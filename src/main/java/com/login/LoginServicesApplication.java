@@ -23,7 +23,7 @@ public class LoginServicesApplication {
 			accountServices.save(new AppRole(null,"USER"));
 			accountServices.save(new AppRole(null,"ADMIN"));
 			Stream.of("user1", "user2","user3","admin").forEach(un -> {
-				accountServices.saveUser(un, " 1234 ", " 1234 ");
+				accountServices.saveUser(un, "1234","1234");
 			});
 			accountServices.addRoleToUser("admin","ADMIN");
 			

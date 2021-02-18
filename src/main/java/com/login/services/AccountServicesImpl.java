@@ -14,12 +14,12 @@ import com.login.entities.AppUser;
 @Service
 @Transactional
 public class AccountServicesImpl implements AccountServices {
-
+   @Autowired
 	private AppUserRepository appUserRepo;
-
+    @Autowired
 	private AppRoleRepository appRoleRepo;
 	private BCryptPasswordEncoder bCryptPassword;
-
+    //l'injection = intanciation de la classe lors de demarrage
 	public AccountServicesImpl(AppUserRepository appUserRepo, AppRoleRepository appRoleRepo,
 			BCryptPasswordEncoder bCryptPassword) {
 		super();
@@ -32,7 +32,7 @@ public class AccountServicesImpl implements AccountServices {
 	public AppUser saveUser(String userName, String passWord, String ConfirmedPassword) {
 		AppUser user = appUserRepo.findByUserName(userName);
 		if (user != null)
-			throw new RuntimeException("UserName alrady existe!");
+			throw new RuntimeException("UserName already exists!");
 		if (!passWord.equals(ConfirmedPassword))
 			throw new RuntimeException("Please confirm your password!");
 		AppUser appUser = new AppUser();
